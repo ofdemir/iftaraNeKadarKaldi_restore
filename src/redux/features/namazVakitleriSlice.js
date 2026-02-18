@@ -102,21 +102,21 @@ export const namazVakitleriSlice = createSlice({
 })
 
 export const getCurrentCityAsync = (city) => (dispatch) => {
-    let currentCity = {loading: true};
-    dispatch(getCurrentCity(currentCity)) 
-    const apiUrl = "https://api.collectapi.com/pray/single?ezan=Akşam&data.city=" + dispatch(Cevir(city));
-    const apiKey = "1Ob5SswhEmezvoNBbIz3Uh:05wGrbFPN9ZiFjZUzw54HK"
-    dispatch(getCityChange(city));
-    return fetch(apiUrl, {
-        method: "GET",
-        headers: {
-            'Content-type': 'application/json',
-            'Authorization': `apikey ${apiKey}`,
-        },
-    })
-        .then(response => response.json())
-        .then(response => { response.loading = false; dispatch(getCurrentCity(response.result[0])) })
-        .catch(handleError);
+    let currentCity = {loading: true};
+    dispatch(getCurrentCity(currentCity)) 
+    const apiUrl = "https://api.collectapi.com/pray/single?ezan=Akşam&data.city=" + dispatch(Cevir(city));
+    const apiKey = process.env.REACT_APP_COLLECTAPI_KEY ||  "1Ob5SswhEmezvoNBbIz3Uh:05wGrbFPN9ZiFjZUzw54HK"
+    dispatch(getCityChange(city));
+    return fetch(apiUrl, {
+        method: "GET",
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': `apikey ${apiKey}`,
+        },
+    })
+        .then(response => response.json())
+        .then(response => { response.loading = false; dispatch(getCurrentCity(response.result[0])) })
+        .catch(handleError);
 }
 export function handleError(error) {
     console.log("Api hatası oluştu.");
