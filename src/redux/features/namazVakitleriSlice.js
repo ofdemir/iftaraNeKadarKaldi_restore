@@ -105,7 +105,7 @@ export const getCurrentCityAsync = (city) => (dispatch) => {
     let currentCity = {loading: true};
     dispatch(getCurrentCity(currentCity)) 
     const apiUrl = "https://api.collectapi.com/pray/single?ezan=Akşam&data.city=" + dispatch(Cevir(city));
-    const apiKey = process.env.REACT_APP_COLLECTAPI_KEY ||  "1Ob5SswhEmezvoNBbIz3Uh:05wGrbFPN9ZiFjZUzw54HK"
+    const apiKey = "6EBoVYYPgw3Yu1W9yfe0iW:3oZ78o92ceqBaV7lkwHNWx"
     dispatch(getCityChange(city));
     return fetch(apiUrl, {
         method: "GET",
